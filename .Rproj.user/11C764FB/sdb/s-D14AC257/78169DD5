@@ -6,11 +6,11 @@
     "folds" : "",
     "hash" : "383674227",
     "id" : "78169DD5",
-    "lastKnownWriteTime" : 1414240717,
+    "lastKnownWriteTime" : 1414241404,
     "path" : "~/Documents/Coursera/Getting and Cleaning Data/Project/run_analysis.R",
     "project_path" : "run_analysis.R",
     "properties" : {
     },
-    "source_on_save" : false,
+    "source_on_save" : true,
     "type" : "r_source"
 }
