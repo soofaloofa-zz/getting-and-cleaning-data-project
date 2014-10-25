@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1414236242773.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A8B8DC2F",
+    "lastKnownWriteTime" : 7308604914264011776,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "features",
+        "contentUrl" : "content?title=features&file=485a944399b9467095ea88a2c82b223a.htm",
+        "displayedObservations" : "1000",
+        "displayedVariables" : 87,
+        "totalObservations" : "10299",
+        "variables" : "89"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
