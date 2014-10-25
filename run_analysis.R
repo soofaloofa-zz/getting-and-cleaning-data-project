@@ -1,3 +1,5 @@
+library(dplyr)
+
 # 1. Merge the training and the test sets to create one data set.
 # 4. Appropriately label the data set with descriptive variable names.
 featureNames <- read.table('./UCI HAR Dataset/features.txt')[,2]
@@ -16,7 +18,7 @@ features <- features[,usedFeatures]
 trainSubjectIndex <- read.table('./UCI HAR Dataset/train/subject_train.txt', col.names='Subject.Index')
 testSubjectIndex <- read.table('./UCI HAR Dataset/test/subject_test.txt', col.names='Subject.Index')
 subjects <- rbind(trainSubjectIndex, testSubjectIndex)
-features <- cbind(features, subjects)
+features <- cbind(subjects, features)
 
 # 3. Use descriptive activity names to name the activities in the data set.
 trainActivityIndex <- read.table('./UCI HAR Dataset/train/y_train.txt', col.names='Activity.Index')
@@ -26,28 +28,9 @@ activities <- rbind(trainActivityIndex, testActivityIndex)
 activities$id <- 1:nrow(activities)  # Apply an index to the data
 activities <- merge(activityLabels, activities)
 activities <- activities[order(activities$id), ]
-activities$id <- NULL
-features <- cbind(features, activities)
+features <- cbind(activities$Activity.Label, features)
+colnames(features)[1] <- "Activity.Label" 
 
 # 5.  then you are taking the mean for each grouping Subject+Activity.
-
-# there should only be 1 row for each unique combination of Subject and Activity. 
-# This would be like a dual primary key in a database. So for instance, 
-# there should be no duplicates of Subject "1" and Activity "Walking". 
-# The output for each variable/column should be the mean of all combinations of Subject "1" 
-# and Activity "Walking" for the target variable. For me the dplyr library provided 
-# the easiest solution to accomplish this.
-
-
-# Read the test data, applying names to columns and binding subject and activity indices
-#testFeatures <- read.table('./UCI HAR Dataset/test/X_test.txt', col.names=featureNames)
-#testSubjectIndex <- read.table('./UCI HAR Dataset/test/subject_test.txt', col.names='Subject.Index')
-#testActivityIndex <- read.table('./UCI HAR Dataset/test/y_test.txt', col.names='Activity.Index')
-#testResults <- cbind(testSubjectIndex, testActivityIndex, testFeatures)
-
-
-# Read the training data, applying names to columns and binding subject and activity indices
-#trainFeatures <- read.table('./UCI HAR Dataset/train/X_train.txt', col.names=featureNames)
-#trainSubjectIndex <- read.table('./UCI HAR Dataset/train/subject_train.txt', col.names='Subject.Index')
-#trainActivityIndex <- read.table('./UCI HAR Dataset/train/y_train.txt', col.names='Activity.Index')
-#trainResults <- cbind(trainSubjectIndex, trainActivityIndex, trainFeatures)
+grouped <- group_by(features, Activity.Label, Subject.Index)
+summarized <- summarise_each(grouped, funs(mean))

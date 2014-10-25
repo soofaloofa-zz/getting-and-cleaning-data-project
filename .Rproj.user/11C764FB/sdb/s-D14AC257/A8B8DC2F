@@ -11,11 +11,11 @@
     "project_path" : null,
     "properties" : {
         "caption" : "features",
-        "contentUrl" : "content?title=features&file=485a944399b9467095ea88a2c82b223a.htm",
+        "contentUrl" : "content?title=features&file=77b56b48bc324c22a45acb665d044bc9.htm",
         "displayedObservations" : "1000",
         "displayedVariables" : 87,
         "totalObservations" : "10299",
-        "variables" : "89"
+        "variables" : "88"
     },
     "source_on_save" : false,
     "type" : "r_dataframe"
